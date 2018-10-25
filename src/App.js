@@ -1,25 +1,25 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { Button, Checkbox, Heading, TextInputField } from 'evergreen-ui';
 import './App.css';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        <form className="form-signin">
+          <Heading size={700} marginTop={0} marginBottom={20}>Sign in</Heading>
+        
+          <div className="form-group">
+            <TextInputField label="Email" inputHeight={40} />
+          </div>
+          <div className="form-group">
+            <TextInputField label="Password" type="password" inputHeight={40} />            
+          </div>
+          
+          <Button appearance="primary" height={48} width="100%">Sign in</Button>
+
+          <Checkbox checked label="Keep me signed in" />
+        </form>
       </div>
     );
   }
