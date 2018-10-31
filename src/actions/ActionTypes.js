@@ -1,6 +1,5 @@
 const ActionTypes = {    
-    USER_LOGIN_COMPLETE: 'USER_LOGIN_COMPLETE',
-    USER_SIGNUP_COMPLETE: 'USER_SIGNUP_COMPLETE',    
+    AUTH_LOGIN_COMPLETE: 'AUTH_LOGIN_COMPLETE',        
   };
   
   export default ActionTypes;
