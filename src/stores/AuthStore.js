@@ -13,11 +13,6 @@ class AuthStore extends Store {
     this.authToken = "";
   }
 
-  //  Returns true if we have an auth token
-  haveAuthToken() {
-    return this.authToken !== "";
-  }
-
   //  Returns the bearer token for the current user
   getAuthToken() {
     return this.authToken;
@@ -27,7 +22,7 @@ class AuthStore extends Store {
 
     switch (action.actionType) {
 
-      case ActionTypes.AUTH_LOGIN_COMPLETE:
+      case ActionTypes.RECEIVE_AUTH_TOKEN:
 
         //  Set the token:
         this.authToken = action.authToken;

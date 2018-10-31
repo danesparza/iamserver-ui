@@ -1,5 +1,5 @@
-import AuthActions from '../actions/AuthActions';
 import HttpStatus from 'http-status-codes';
+import AuthUtils from '../utils/AuthUtils';
 
 class APIUtils {
 
@@ -48,7 +48,7 @@ class APIUtils {
 
             // Receive system state
             response.json().then(function (data) {
-                AuthActions.LoginComplete(data.access_token);
+                AuthUtils.setAuthToken(data.access_token);
                 
                 //  Redirect to the main page:
                 window.location.hash = "#/";

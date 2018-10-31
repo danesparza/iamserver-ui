@@ -1,5 +1,5 @@
 const ActionTypes = {    
-    AUTH_LOGIN_COMPLETE: 'AUTH_LOGIN_COMPLETE',        
+    RECEIVE_AUTH_TOKEN: 'RECEIVE_AUTH_TOKEN',        
   };
   
   export default ActionTypes;

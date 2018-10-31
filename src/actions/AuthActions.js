@@ -4,9 +4,9 @@ import ActionTypes from './ActionTypes';
 class AuthActions {
 
 	//	Updates the auth store with the auth token
-	LoginComplete(authToken) {
+	ReceiveAuthToken(authToken) {
 		AppDispatcher.dispatch({
-			actionType: ActionTypes.AUTH_LOGIN_COMPLETE,
+			actionType: ActionTypes.RECEIVE_AUTH_TOKEN,
 			authToken,
 		});
 	}
