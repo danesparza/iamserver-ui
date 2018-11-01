@@ -9,7 +9,8 @@ import Logout from './components/Logout';
 import Main from './components/Main';
 import Resources from './components/Resources';
 
-import './App.css';
+//  Stylesheets & images
+import 'bootstrap/dist/css/bootstrap.css';
 
 //  Hash based navigation for react-enroute
 const getHash = hash => {
