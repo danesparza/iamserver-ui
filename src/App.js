@@ -45,16 +45,18 @@ class App extends Component {
 
   render() {
     return (
-      <Router {...this.state}>
-        <Route path="" component={AuthContainer}>
-          <Route path="/" component={Main} />
-          <Route path="/resources" component={Resources} />
-        </Route>
-        
-        <Route path="/login" component={Login} />
-        <Route path="/logout" component={Logout} />
-        <Route path="*" component={NotFound} />
-      </Router>
+
+        <Router {...this.state}>
+          <Route path="" component={AuthContainer}>
+            <Route path="/" component={Main} />
+            <Route path="/resources" component={Resources} />
+          </Route>
+          
+          <Route path="/login" component={Login} />
+          <Route path="/logout" component={Logout} />
+          <Route path="*" component={NotFound} />
+        </Router>
+      
     );
   }
 
