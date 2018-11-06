@@ -18,6 +18,11 @@ class AuthStore extends Store {
     return this.authToken;
   }
 
+  //  Returns 'true' if we have an auth token, 'false' if we don't
+  haveAuthToken() {
+    return this.authToken !== "";
+  }
+
   __onDispatch(action) {
 
     switch (action.actionType) {
