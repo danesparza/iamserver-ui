@@ -17,6 +17,9 @@ import {
 
       //  The current user description:
       this.userdesc = "";
+
+      //  The system uptime:
+      this.uptime = "";
     }
   
     //  Gets system overview information
@@ -29,17 +32,36 @@ import {
       return this.username;
     }
 
-    //  
+    //  Gets the user description for the current user
+    getUserDesc() {
+      return this.userdesc;
+    }  
+
+    //  Gets the system uptime data
+    getUptime() {
+      return this.uptime;
+    }
+
+    initialCheckCompleted() {
+      return this.uptime !== "";
+    }
   
     __onDispatch(action) {
   
       switch (action.actionType) {
   
-        case ActionTypes.RECEIVE_AUTH_TOKEN:
+        case ActionTypes.RECEIVE_OVERVIEW:
   
-          //  Set the token:
-          this.authToken = action.authToken;
+          //  Set the overview data:
+          this.overview = action.data.overview;
+
+          //  Set the user data:
+          this.username = action.data.user_name;
+          this.userdesc = action.data.user_description;
   
+          //  Set the uptime data:
+          this.uptime = action.data.uptime;
+
           this.__emitChange();
           break;
   

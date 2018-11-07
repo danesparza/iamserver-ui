@@ -1,11 +1,13 @@
 import AuthUtils from '../utils/AuthUtils';
+import NavUtils from '../utils/NavUtils';
 
 const Logout = () => {
   //  Logout
   AuthUtils.logout();
 
   //  Redirect to the main window:
-  window.location.hash = "#/login";
+  NavUtils.gotoMainPage();
+  
   return null;
 }
 

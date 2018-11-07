@@ -18,6 +18,7 @@ import { sideNavItems } from './SideNav';
 
 //  Stores
 import AuthStore from '../stores/AuthStore';
+import OverviewStore from '../stores/OverviewStore';
 
 //  Utils
 import AuthUtils from '../utils/AuthUtils';
@@ -113,6 +114,7 @@ class Main extends Component {
     this.state = {
       Token: AuthUtils.getAuthToken(),
       open: true,
+      Uptime: OverviewStore.getUptime(),
     }
   }
 
@@ -127,11 +129,13 @@ class Main extends Component {
   componentDidMount(){    
       //  Add store listeners ... and notify ME of changes
       this.authListener = AuthStore.addListener(this._onChange);
+      this.overviewListener = OverviewStore.addListener(this._onChange);
   }
 
   componentWillUnmount() {
       //  Remove store listeners
       this.authListener.remove();
+      this.overviewListener.remove();
   }
 
   render() {
@@ -193,7 +197,7 @@ class Main extends Component {
               Overview
             </Typography>            
             <div>
-              Overview info
+              Overview info.  Uptime: {this.state.Uptime}
             </div>
           </main>
         </div>
@@ -204,7 +208,8 @@ class Main extends Component {
   //  Data changed:
   _onChange = () => {
     this.setState({
-      Token: AuthUtils.getAuthToken()
+      Token: AuthUtils.getAuthToken(),
+      Uptime: OverviewStore.getUptime(),
     });
   }
 }

@@ -4,9 +4,11 @@ import React, { Component } from 'react';
 //  Utils
 import APIUtils from '../utils/APIUtils';
 import AuthUtils from '../utils/AuthUtils';
+import NavUtils from '../utils/NavUtils';
 
 //  Stores
 import AuthStore from '../stores/AuthStore';
+import OverviewStore from '../stores/OverviewStore';
 
 class AuthContainer extends Component {
 
@@ -14,18 +16,21 @@ class AuthContainer extends Component {
         super();
         this.state = {
             /* Initial check is done with AuthUtils */
-            haveAuthToken: AuthUtils.getAuthToken()
+            haveAuthToken: AuthUtils.getAuthToken(),
+            InitialOverviewCheckCompleted: OverviewStore.initialCheckCompleted(),
         };
     }
 
     componentDidMount(){    
         //  Add store listeners ... and notify ME of changes
-        this.authListener = AuthStore.addListener(this._onChange);        
+        this.authListener = AuthStore.addListener(this._onChange);
+        this.overviewListener = OverviewStore.addListener(this._onChange);
     }
 
     componentWillUnmount() {
         //  Remove store listeners
         this.authListener.remove();        
+        this.overviewListener.remove();
     }
 
     render() {
@@ -35,15 +40,15 @@ class AuthContainer extends Component {
         const { children } = this.props;
 
         //  First check to see if we're logged in.  If not, show the login page:
-        if (!this.state.haveAuthToken)
-        {
-            window.location.hash = "#/login";
+        if (!this.state.haveAuthToken) {
+            NavUtils.gotoLoginPage();
             return null;
         }
 
-        //  Check to see if we've done the initial overview check.  If we haven't,
-        //  get the overview...
-        APIUtils.getOverview(AuthStore.getAuthToken());  
+        //  If we haven't gotten the overview data yet, go get it...
+        if(!this.state.InitialOverviewCheckCompleted) {
+            APIUtils.getOverview(AuthStore.getAuthToken());
+        }    
 
         //  Need to see if we're currently logged in / authorized
         //  For now, just pass through like we're authorized and 
@@ -58,7 +63,8 @@ class AuthContainer extends Component {
     _onChange = (e) => {
         this.setState({
             /* Subsequent checks are done with AuthStore listener */
-            HaveToken: AuthStore.haveAuthToken()           
+            HaveToken: AuthStore.haveAuthToken(),
+            InitialOverviewCheckCompleted: OverviewStore.initialCheckCompleted(),      
         });
     }
 

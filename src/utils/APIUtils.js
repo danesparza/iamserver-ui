@@ -1,5 +1,9 @@
 import HttpStatus from 'http-status-codes';
 import AuthUtils from '../utils/AuthUtils';
+import NavUtils from '../utils/NavUtils';
+
+//  Actions
+import OverviewActions from '../actions/OverviewActions';
 
 class APIUtils {
 
@@ -51,7 +55,7 @@ class APIUtils {
                 AuthUtils.setAuthToken(data.access_token);
                 
                 //  Redirect to the main page:
-                window.location.hash = "#/";
+                NavUtils.gotoMainPage();
             });
         }
         )
@@ -83,7 +87,8 @@ class APIUtils {
             if (response.status === HttpStatus.UNAUTHORIZED || response.status === HttpStatus.FORBIDDEN) {
                 console.log('Authorization issue. Status Code: ' + response.status);
                 
-                //  We need to login again.  Clear everything and login:
+                //  Go to the logout page:
+                NavUtils.gotoLogoutPage();
 
                 return;
             }
@@ -97,10 +102,9 @@ class APIUtils {
             }            
 
             // Receive system overview
-            response.json().then(function (data) {
-                //  Send to action.  For now, just dump to console:
-                console.log(data);
-
+            response.json().then(function (resp) {
+                //  Send to action.  
+                OverviewActions.ReceiveOverview(resp.data);
             });
         }
         )
