@@ -60,11 +60,6 @@ class APIUtils {
         });
     }
 
-    //  Logout from the system
-    logout(){
-
-    }
-
     getOverview(token) {
 
         let url = `${this.baseURL}/system/overview`;

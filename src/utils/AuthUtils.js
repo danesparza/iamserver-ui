@@ -42,11 +42,8 @@ class AuthUtils {
 
     //  Clears seasson data and logs out
     logout() {
-        //  Clear localstorage:
-        localStorage.clear();
-
-        //  Trigger the AuthStore update with a blank token:
-        AuthActions.ReceiveAuthToken("");
+        //  Remove session data:
+        this.setAuthToken("");
     }
 
 }

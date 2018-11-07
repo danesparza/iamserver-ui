@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 
 //  Utils
 import APIUtils from '../utils/APIUtils';
+import AuthUtils from '../utils/AuthUtils';
 
 //  Stores
 import AuthStore from '../stores/AuthStore';
@@ -12,26 +13,19 @@ class AuthContainer extends Component {
     constructor(){
         super();
         this.state = {
-            UserCheckCompleted: UserStore.userCheckCompleted(),
-            ValidUser: UserStore.userIsValid(),
-            CurrentUser: UserStore.getCurrentUser(),
-            InitialActivityCheckCompleted: ActivityStore.initialCheckCompleted() 
+            /* Initial check is done with AuthUtils */
+            haveAuthToken: AuthUtils.getAuthToken()
         };
-
-        //  Bind our events: 
-        this._onChange = this._onChange.bind(this);        
     }
 
     componentDidMount(){    
         //  Add store listeners ... and notify ME of changes
-        this.userListener = UserStore.addListener(this._onChange);
-        this.activityListener = ActivityStore.addListener(this._onChange);
+        this.authListener = AuthStore.addListener(this._onChange);        
     }
 
     componentWillUnmount() {
         //  Remove store listeners
-        this.userListener.remove();
-        this.activityListener.remove();
+        this.authListener.remove();        
     }
 
     render() {
@@ -41,7 +35,11 @@ class AuthContainer extends Component {
         const { children } = this.props;
 
         //  First check to see if we're logged in.  If not, show the login page:
-
+        if (!this.state.haveAuthToken)
+        {
+            window.location.hash = "#/login";
+            return null;
+        }
 
         //  Check to see if we've done the initial overview check.  If we haven't,
         //  get the overview...
@@ -55,6 +53,13 @@ class AuthContainer extends Component {
                 { children }
             </div>
         );
+    }
+
+    _onChange = (e) => {
+        this.setState({
+            /* Subsequent checks are done with AuthStore listener */
+            HaveToken: AuthStore.haveAuthToken()           
+        });
     }
 
 }

@@ -7,7 +7,7 @@ import NotFound from './components/NotFound';
 import Login from './components/Login';
 import Logout from './components/Logout';
 import Main from './components/Main';
-import Resources from './components/Resources';
+import GroupList from './components/GroupList';
 
 //  Hash based navigation for react-enroute
 const getHash = hash => {
@@ -49,7 +49,7 @@ class App extends Component {
         <Router {...this.state}>
           <Route path="" component={AuthContainer}>
             <Route path="/" component={Main} />
-            <Route path="/resources" component={Resources} />
+            <Route path="/groups" component={GroupList} />
           </Route>
           
           <Route path="/login" component={Login} />

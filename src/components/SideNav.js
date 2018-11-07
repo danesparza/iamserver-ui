@@ -8,37 +8,41 @@ import PersonIcon from '@material-ui/icons/Person';
 import LayersIcon from '@material-ui/icons/Layers';
 import SecurityIcon from '@material-ui/icons/Security';
 
+function ListItemLink(props) {
+  return <ListItem button component="a" {...props} />;
+}
+
 export const sideNavItems = (
   <div>
-    <ListItem button>
+    <ListItemLink href="#/">
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
       <ListItemText primary="Overview" />
-    </ListItem>
-    <ListItem button>
+    </ListItemLink>
+    <ListItemLink href="#/groups/">
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
       <ListItemText primary="Groups" />
-    </ListItem>
-    <ListItem button>
+    </ListItemLink>
+    <ListItemLink href="#/users/">
       <ListItemIcon>
         <PersonIcon />
       </ListItemIcon>
       <ListItemText primary="Users" />
-    </ListItem>
-    <ListItem button>
+    </ListItemLink>
+    <ListItemLink href="#/roles/">
       <ListItemIcon>
         <LayersIcon />
       </ListItemIcon>
       <ListItemText primary="Roles" />
-    </ListItem>
-    <ListItem button>
+    </ListItemLink>
+    <ListItemLink href="#/policies/">
       <ListItemIcon>
         <SecurityIcon />
       </ListItemIcon>
       <ListItemText primary="Policies" />
-    </ListItem>
+    </ListItemLink>
   </div>
 );

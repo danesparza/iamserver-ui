@@ -10,11 +10,10 @@ import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
+import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import { sideNavItems } from './SideNav';
 
 //  Stores
@@ -53,6 +52,9 @@ const styles = theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
+  },
+  button: {
+    margin: theme.spacing.unit,
   },
   menuButton: {
     marginLeft: 12,
@@ -165,11 +167,9 @@ class Main extends Component {
               >
                 IAM Server
               </Typography>
-              <IconButton color="inherit">
-                <Badge badgeContent={4} color="secondary">
-                  <NotificationsIcon />
-                </Badge>
-              </IconButton>
+              <Button variant="contained" href="#/logout" className={classes.button}>
+                Logout
+              </Button>              
             </Toolbar>
           </AppBar>
           <Drawer
