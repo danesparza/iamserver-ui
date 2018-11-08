@@ -4,7 +4,6 @@ import Navigation from '../components/Navigation';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
 
 //  Stores
 import AuthStore from '../stores/AuthStore';
@@ -53,6 +52,7 @@ class Main extends Component {
   render() {
     
     const { classes } = this.props;
+    const { children } = this.props;
 
     return (
       <React.Fragment>
@@ -63,12 +63,7 @@ class Main extends Component {
             <div className={classes.appBarSpacer} />
             {/** Start content here */}
 
-            <Typography variant="h4" gutterBottom component="h2">
-              Overview
-            </Typography>            
-            <Typography>
-              Overview info.  Uptime: {this.state.Uptime}
-            </Typography>
+              {children}
 
             {/** End content here */}
           </main>

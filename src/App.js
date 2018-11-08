@@ -8,6 +8,7 @@ import Login from './components/Login';
 import Logout from './components/Logout';
 import Main from './components/Main';
 import GroupList from './components/GroupList';
+import Overview from './components/Overview';
 
 //  Hash based navigation for react-enroute
 const getHash = hash => {
@@ -48,8 +49,10 @@ class App extends Component {
 
         <Router {...this.state}>
           <Route path="" component={AuthContainer}>
-            <Route path="/" component={Main} />
-            <Route path="/groups" component={GroupList} />
+            <Route path="" component={Main}>
+              <Route path="/" component={Overview} />
+              <Route path="/groups" component={GroupList} />
+            </Route>            
           </Route>
           
           <Route path="/login" component={Login} />
