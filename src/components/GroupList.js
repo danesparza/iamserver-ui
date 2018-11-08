@@ -1,9 +1,15 @@
 //  React
 import React from 'react';
+import Typography from '@material-ui/core/Typography';
 
 const GroupList = () => (
   <div>
-      GroupList
+      <Typography variant="h4" gutterBottom component="h2">
+        Groups
+      </Typography>            
+      <Typography>
+        Group list
+      </Typography>
   </div>
 )
 

@@ -8,6 +8,9 @@ import Login from './components/Login';
 import Logout from './components/Logout';
 import Main from './components/Main';
 import GroupList from './components/GroupList';
+import UserList from './components/UserList';
+import RoleList from './components/RoleList';
+import PolicyList from './components/PolicyList';
 import Overview from './components/Overview';
 
 //  Hash based navigation for react-enroute
@@ -52,6 +55,9 @@ class App extends Component {
             <Route path="" component={Main}>
               <Route path="/" component={Overview} />
               <Route path="/groups" component={GroupList} />
+              <Route path="/users" component={UserList} />
+              <Route path="/roles" component={RoleList} />
+              <Route path="/policies" component={PolicyList} />
             </Route>            
           </Route>
           

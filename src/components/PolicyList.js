@@ -2,15 +2,15 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 
-const UserList = () => (
+const PolicyList = () => (
   <div>
       <Typography variant="h4" gutterBottom component="h2">
-        Users
+        Policies
       </Typography>            
       <Typography>
-        User list
+        Policy list
       </Typography>
   </div>
 )
 
-export default UserList;
+export default PolicyList;

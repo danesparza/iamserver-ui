@@ -2,15 +2,15 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 
-const UserList = () => (
+const RoleList = () => (
   <div>
       <Typography variant="h4" gutterBottom component="h2">
-        Users
+        Roles
       </Typography>            
       <Typography>
-        User list
+        Role list
       </Typography>
   </div>
 )
 
-export default UserList;
+export default RoleList;
