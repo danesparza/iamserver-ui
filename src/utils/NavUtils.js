@@ -1,6 +1,8 @@
 
 function stringToBoolean(string){
-    switch(string.toLowerCase()) 
+    let stringtoeval = string || "";
+
+    switch(stringtoeval.toLowerCase()) 
     {
         case "false": 
         case "no": 
