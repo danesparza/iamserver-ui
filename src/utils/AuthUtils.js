@@ -10,7 +10,7 @@ class AuthUtils {
         // First, does the AuthStore have a token?  If so, use that
         retval = AuthStore.getAuthToken();
 
-        // If the AuthStore doesn't have a token, do we have one in seassonStorage?
+        // If the AuthStore doesn't have a token, do we have one in localStorage?
         // If so:  
         // - Trigger the appropriate auth action to track the token in the AuthStore
         // - Use the token

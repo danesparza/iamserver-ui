@@ -21,6 +21,9 @@ import LayersIcon from '@material-ui/icons/Layers';
 import SecurityIcon from '@material-ui/icons/Security';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import CloudIcon from '@material-ui/icons/Cloud';
+
+import NavUtils from '../utils/NavUtils';
 
 const drawerWidth = 240;
 
@@ -125,30 +128,42 @@ const sideNavItems = (
         </ListItemIcon>
         <ListItemText primary="Overview" />
       </ListItemLink>
-      <ListItemLink href="#/groups/">
-        <ListItemIcon>
-          <PeopleIcon />
-        </ListItemIcon>
-        <ListItemText primary="Groups" />
-      </ListItemLink>
+      
       <ListItemLink href="#/users/">
         <ListItemIcon>
           <PersonIcon />
         </ListItemIcon>
         <ListItemText primary="Users" />
       </ListItemLink>
-      <ListItemLink href="#/roles/">
+      
+      <ListItemLink href="#/groups/">
         <ListItemIcon>
-          <LayersIcon />
+          <PeopleIcon />
         </ListItemIcon>
-        <ListItemText primary="Roles" />
+        <ListItemText primary="Groups" />
       </ListItemLink>
+      
+      <ListItemLink href="#/resources/">
+        <ListItemIcon>
+          <CloudIcon />
+        </ListItemIcon>
+        <ListItemText primary="Resources" />
+      </ListItemLink>
+
       <ListItemLink href="#/policies/">
         <ListItemIcon>
           <SecurityIcon />
         </ListItemIcon>
         <ListItemText primary="Policies" />
       </ListItemLink>
+
+      <ListItemLink href="#/roles/">
+        <ListItemIcon>
+          <LayersIcon />
+        </ListItemIcon>
+        <ListItemText primary="Roles" />
+      </ListItemLink>
+      
     </div>
   );
 
@@ -159,15 +174,17 @@ class Navigation extends Component {
 
     //  Set the initial username/password:
     this.state = {
-      open: true,      
+      open: NavUtils.isNavOpened(),      
     }
   }
 
   handleDrawerOpen = () => {
+    NavUtils.setNavOpened(true);
     this.setState({ open: true });
   };
 
   handleDrawerClose = () => {
+    NavUtils.setNavOpened(false);
     this.setState({ open: false });
   };  
 
@@ -201,7 +218,7 @@ class Navigation extends Component {
                 noWrap
                 className={classes.title}
               >
-                IAM Server
+                IAM Management console
               </Typography>
               <Button variant="contained" href="#/logout" className={classes.button}>
                 Logout

@@ -8,7 +8,7 @@ const GroupList = () => (
         Groups
       </Typography>            
       <Typography>
-        Group list
+        Groups represent a group of users
       </Typography>
   </div>
 )

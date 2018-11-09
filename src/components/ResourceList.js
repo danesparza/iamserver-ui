@@ -2,15 +2,15 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 
-const RoleList = () => (
+const ResourceList = () => (
   <div>
       <Typography variant="h4" gutterBottom component="h2">
-        Roles
+        Resources & Actions
       </Typography>            
       <Typography>
-        Roles represent groups of policies
+        Resources represent devices, applications, or services that require permission
       </Typography>
   </div>
 )
 
-export default RoleList;
+export default ResourceList;

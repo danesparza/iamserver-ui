@@ -8,7 +8,7 @@ const UserList = () => (
         Users
       </Typography>            
       <Typography>
-        User list
+        Users represent individual user and service credentials in the system
       </Typography>
   </div>
 )

@@ -49,15 +49,10 @@ class Overview extends Component {
 
     return (      
       <div>
-          <Typography variant="h4" gutterBottom component="h2">
-            Overview
+          <Typography variant="h5" gutterBottom>
+            Welcome to the Identity and Access Management service 
           </Typography>                    
-          <Grid container spacing={24}>
-            <Grid item xs={12}>
-              <Typography>
-                Overview info.
-              </Typography>            
-            </Grid>          
+          <Grid container spacing={24}>            
             <Grid item xs={6}>
               <Typography>                
                 <div>

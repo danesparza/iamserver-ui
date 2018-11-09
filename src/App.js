@@ -9,6 +9,7 @@ import Logout from './components/Logout';
 import Main from './components/Main';
 import GroupList from './components/GroupList';
 import UserList from './components/UserList';
+import ResourceList from './components/ResourceList';
 import RoleList from './components/RoleList';
 import PolicyList from './components/PolicyList';
 import Overview from './components/Overview';
@@ -56,6 +57,7 @@ class App extends Component {
               <Route path="/" component={Overview} />
               <Route path="/groups" component={GroupList} />
               <Route path="/users" component={UserList} />
+              <Route path="/resources" component={ResourceList} />
               <Route path="/roles" component={RoleList} />
               <Route path="/policies" component={PolicyList} />
             </Route>            

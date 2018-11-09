@@ -8,7 +8,7 @@ const PolicyList = () => (
         Policies
       </Typography>            
       <Typography>
-        Policy list
+        Policies represent the permissions associated with a given user/group, resource, and action.
       </Typography>
   </div>
 )
