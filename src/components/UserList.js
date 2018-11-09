@@ -1,5 +1,6 @@
 //  React
 import React from 'react';
+
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -30,7 +31,18 @@ function UserList(props){
         <MaterialTable className={classes.table}
           columns={[
             { title: 'Name', field: 'name' },
-            { title: 'Description', field: 'description' },            
+            { title: 'Description', field: 'description' },
+            { title: 'Enabled', field: 'enabled' },
+            { title: 'MFA', field: 'totpenabled' },
+            { title: 'Created', field: 'created', hidden: true },
+            { title: 'Created by', field: 'created_by', hidden: true },
+            { title: 'Updated', field: 'updated', hidden: true },
+            { title: 'Updated by', field: 'updated_by', hidden: true },
+            { title: 'Deleted', field: 'deleted', hidden: true },
+            { title: 'Deleted by', field: 'deleted_by', hidden: true },
+            { title: 'Groups', field: 'groups' },
+            { title: 'Policies', field: 'policies', hidden: true },
+            { title: 'Roles', field: 'roles', hidden: true },            
           ]}
           data={[
             { name: 'testing', description: 'Testing user'},
