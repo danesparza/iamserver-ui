@@ -105,8 +105,17 @@ const styles = theme => ({
 });
 
 function ListItemLink(props) {
-    return <ListItem button component="a" {...props} />;
-  }
+    //  If the current window location appears to match the 
+    //  list item link target, then ...
+    //  indicate the component should be 'selected':
+    let selectedvalue = false;
+    if(window.location.hash === props.href) {
+      selectedvalue = true;
+    }
+
+    //  Emit the component
+    return <ListItem button component="a" selected={selectedvalue} {...props} />;
+}
   
 const sideNavItems = (
     <div>

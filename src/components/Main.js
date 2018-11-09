@@ -7,7 +7,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 
 //  Stores
 import AuthStore from '../stores/AuthStore';
-import OverviewStore from '../stores/OverviewStore';
 
 //  Utils
 import AuthUtils from '../utils/AuthUtils';
@@ -33,20 +32,17 @@ class Main extends Component {
     //  Set the initial username/password:
     this.state = {
       Token: AuthUtils.getAuthToken(),
-      Uptime: OverviewStore.getUptime(),
     }
   }
 
   componentDidMount(){    
       //  Add store listeners ... and notify ME of changes
       this.authListener = AuthStore.addListener(this._onChange);
-      this.overviewListener = OverviewStore.addListener(this._onChange);
   }
 
   componentWillUnmount() {
       //  Remove store listeners
-      this.authListener.remove();
-      this.overviewListener.remove();
+      this.authListener.remove();    
   }
 
   render() {
@@ -76,7 +72,6 @@ class Main extends Component {
   _onChange = () => {
     this.setState({
       Token: AuthUtils.getAuthToken(),
-      Uptime: OverviewStore.getUptime(),
     });
   }
 }
