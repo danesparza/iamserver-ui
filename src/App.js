@@ -7,11 +7,11 @@ import NotFound from './components/NotFound';
 import Login from './components/Login';
 import Logout from './components/Logout';
 import Main from './components/Main';
-import GroupList from './components/GroupList';
-import UserList from './components/UserList';
-import ResourceList from './components/ResourceList';
-import RoleList from './components/RoleList';
-import PolicyList from './components/PolicyList';
+import GroupList from './components/groups/GroupList';
+import UserList from './components/users/UserList';
+import ResourceList from './components/resources/ResourceList';
+import RoleList from './components/roles/RoleList';
+import PolicyList from './components/policies/PolicyList';
 import Overview from './components/Overview';
 
 //  Hash based navigation for react-enroute
