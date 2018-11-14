@@ -1,6 +1,8 @@
 import React from 'react';
 
 import classNames from 'classnames';
+import Input from '@material-ui/core/Input';
+import Paper from '@material-ui/core/Paper';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -153,9 +155,13 @@ let FilteredTableToolbar = props => {
             {numSelected} selected
           </Typography>
         ) : (
-          <Typography variant="h6" id="tableTitle">
-            Nutrition
-          </Typography>
+          <Input
+            placeholder="Find by name"
+            className={classes.input}
+            inputProps={{
+              'aria-label': 'Description',
+            }}
+          />
         )}
       </div>
       <div className={classes.spacer} />
@@ -272,7 +278,7 @@ class FilteredTable extends React.Component {
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
     return (
-      <div className={classes.root}>
+      <Paper className={classes.root}>
         <FilteredTableToolbar numSelected={selected.length} />
         <div className={classes.tableWrapper}>
           
@@ -338,7 +344,7 @@ class FilteredTable extends React.Component {
           onChangeRowsPerPage={this.handleChangeRowsPerPage}
         />
 
-      </div>
+      </Paper>
     );
   }
 }
