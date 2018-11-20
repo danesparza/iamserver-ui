@@ -1,5 +1,5 @@
 //  React
-import React from 'react';
+import React, { Component } from 'react';
 
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -20,35 +20,41 @@ const styles = theme => ({
   },
 });
 
-function UserList(props){
+class UserList extends Component {  
 
-  const { classes } = props;
+  componentDidMount(){    
+    console.log("Fetching users ... ");
+  }
 
-  return (
-    <div>
-      <Grid container className={classes.root} justify="space-between">    
-        
-        <Grid item>
-          <Button size="small" variant="contained" color="primary" className={classes.button}>
-            Add user
-          </Button>
-          <Button size="small" variant="contained" color="secondary" className={classNames(classes.button, classes.start )}>
-            Delete user
-          </Button>
+  render() {
+    const { classes } = this.props;
+
+    return (
+      <div>
+        <Grid container className={classes.root} justify="space-between">    
+          
+          <Grid item>
+            <Button size="small" variant="contained" color="primary" className={classes.button}>
+              Add user
+            </Button>
+            <Button size="small" variant="contained" color="secondary" className={classNames(classes.button, classes.start )}>
+              Delete user
+            </Button>
+          </Grid>
+
+          <Grid item>
+            <IconButton className={classes.button} aria-label="Refresh">
+              <Refresh />
+            </IconButton>
+          </Grid>            
         </Grid>
 
-        <Grid item>
-          <IconButton className={classes.button} aria-label="Refresh">
-            <Refresh />
-          </IconButton>
-        </Grid>            
-      </Grid>
+        <FilteredTable />        
+      
+      </div>
+    );
+  }
 
-      <FilteredTable />        
-    
-    </div>
-
-  );
 }
 
 UserList.propTypes = {

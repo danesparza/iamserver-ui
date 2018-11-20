@@ -113,6 +113,55 @@ class APIUtils {
         });
     }
 
+    getUsers(token) {
+
+        let url = `${this.baseURL}/system/users`;
+
+        let apiHeaders = new Headers({
+            "Content-Type": "application/json; charset=UTF-8",
+            "Accept": "*/*",
+            "Authorization": "Bearer " + token,
+        });
+
+        //  Make the request:
+        fetch(url,
+        {
+            mode: 'cors',
+            method: 'get',
+            headers: apiHeaders
+        })
+        .then(
+        function (response) {
+
+            if (response.status === HttpStatus.UNAUTHORIZED || response.status === HttpStatus.FORBIDDEN) {
+                console.log('Authorization issue. Status Code: ' + response.status);
+                
+                //  Go to the logout page:
+                NavUtils.gotoLogoutPage();
+
+                return;
+            }
+
+            if (response.status !== HttpStatus.OK) {
+                console.log('Looks like there was a problem. Status Code: ' + response.status);
+                
+                //  We have an unknown problem.  Indicate there was a weird error
+
+                return;
+            }            
+
+            // Receive system overview
+            response.json().then(function (resp) {
+                //  Send to action.  
+                OverviewActions.ReceiveOverview(resp.data);
+            });
+        }
+        )
+        .catch(function (err) {
+            console.log('Fetch Error :-S', err);
+        });
+    }
+
 }
 
 export default new APIUtils();
