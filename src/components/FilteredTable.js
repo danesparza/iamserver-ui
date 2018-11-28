@@ -145,7 +145,9 @@ const toolbarStyles = theme => ({
 });
 
 let FilteredTableToolbar = props => {
-  const { numSelected, classes } = props;
+  const { numSelected, classes, singletype } = props;
+
+  let formattedPlaceholder = "Find " + singletype + " by name";
 
   return (
     <Toolbar
@@ -156,11 +158,11 @@ let FilteredTableToolbar = props => {
       <div className={classes.title}>
         {numSelected > 0 ? (
           <Typography color="inherit" variant="subtitle1">
-            {numSelected} selected
+            {numSelected} {singletype}(s) selected
           </Typography>
         ) : (
           <Input
-            placeholder="Find by name"
+            placeholder={formattedPlaceholder}
             className={classes.input}
             inputProps={{
               'aria-label': 'Description',
@@ -262,13 +264,13 @@ class FilteredTable extends React.Component {
   isSelected = id => this.state.selected.indexOf(id) !== -1;
 
   render() {
-    const { classes, cols, data } = this.props;
+    const { classes, cols, data, singletype } = this.props;
     const { order, orderBy, selected, rowsPerPage, page } = this.state;
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
     return (
       <Paper className={classes.root}>
-        <FilteredTableToolbar numSelected={selected.length} />
+        <FilteredTableToolbar numSelected={selected.length} singletype={singletype} />
         <div className={classes.tableWrapper}>
           
           <Table className={classes.table} aria-labelledby="tableTitle">

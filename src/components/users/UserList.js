@@ -15,6 +15,9 @@ import FilteredTable from '../FilteredTable';
 //  Stores
 import UserStore from '../../stores/UserStore';
 
+//  Utils
+import APIUtils from '../../utils/APIUtils';
+
 //  Component style
 const styles = theme => ({
   root: {
@@ -72,7 +75,7 @@ class UserList extends Component {
           </Grid>
 
           <Grid item>
-            <IconButton className={classes.button} aria-label="Refresh">
+            <IconButton className={classes.button} aria-label="Refresh" onClick={this._onRefresh}>
               <Refresh />
             </IconButton>
           </Grid>            
@@ -89,6 +92,11 @@ class UserList extends Component {
     this.setState({
       Users: UserStore.getAllUsers(),
     });
+  }
+
+  //  Refresh user list:
+  _onRefresh = () => {
+    APIUtils.getUsers();
   }
 
 }
