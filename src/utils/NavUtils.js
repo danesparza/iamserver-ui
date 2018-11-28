@@ -1,19 +1,4 @@
 
-function stringToBoolean(string){
-    let stringtoeval = string || "";
-
-    switch(stringtoeval.toLowerCase()) 
-    {
-        case "false": 
-        case "no": 
-        case "0": 
-        case "": 
-            return false; 
-        default: 
-            return true;
-    }
-}
-
 class NavUtils {
 
     //  Get the navbar opened/closed state
@@ -42,6 +27,21 @@ class NavUtils {
         window.location.hash = "#/logout";
     }
 
+}
+
+function stringToBoolean(string){
+    let stringtoeval = string || "";
+
+    switch(stringtoeval.toLowerCase()) 
+    {
+        case "false": 
+        case "no": 
+        case "0": 
+        case "": 
+            return false; 
+        default: 
+            return true;
+    }
 }
 
 export default new NavUtils();

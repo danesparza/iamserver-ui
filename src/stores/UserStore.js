@@ -16,6 +16,10 @@ import {
       this.currentuser = null;
 
     }
+
+    initialCheckCompleted() {
+      return this.allusers !== null;
+    }
   
     //  Gets all users
     getAllUsers() {

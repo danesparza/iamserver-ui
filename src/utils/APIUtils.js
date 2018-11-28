@@ -4,6 +4,7 @@ import NavUtils from '../utils/NavUtils';
 
 //  Actions
 import OverviewActions from '../actions/OverviewActions';
+import UserActions from '../actions/UserActions';
 
 class APIUtils {
 
@@ -64,9 +65,12 @@ class APIUtils {
         });
     }
 
-    getOverview(token) {
+    getOverview() {
 
-        let url = `${this.baseURL}/system/overview`;
+        //  Get the current auth token:
+        let token = AuthUtils.getAuthToken();
+
+        let url = `${this.baseURL}/system/overview`;        
 
         let apiHeaders = new Headers({
             "Content-Type": "application/json; charset=UTF-8",
@@ -113,7 +117,10 @@ class APIUtils {
         });
     }
 
-    getUsers(token) {
+    getUsers() {
+
+        //  Get the current auth token:
+        let token = AuthUtils.getAuthToken();
 
         let url = `${this.baseURL}/system/users`;
 
@@ -153,7 +160,7 @@ class APIUtils {
             // Receive system overview
             response.json().then(function (resp) {
                 //  Send to action.  
-                OverviewActions.ReceiveOverview(resp.data);
+                UserActions.ReceiveAllUsers(resp.data);
             });
         }
         )
