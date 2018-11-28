@@ -10,7 +10,7 @@ import {
       super(AppDispatcher);
   
       //  All users:
-      this.allusers = null;
+      this.allusers = [];
 
       //  The current user:
       this.currentuser = null;
@@ -18,7 +18,7 @@ import {
     }
 
     initialCheckCompleted() {
-      return this.allusers !== null;
+      return this.allusers.length > 0;
     }
   
     //  Gets all users

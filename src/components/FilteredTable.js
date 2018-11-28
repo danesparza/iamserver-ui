@@ -80,25 +80,25 @@ class FilteredTableHead extends React.Component {
               onChange={onSelectAllClick}
             />
           </TableCell>
-          {cols.map(row => {
+          {cols.map(col => {
             return (
               <TableCell
-                key={row.id}
-                numeric={row.numeric}
-                padding={row.disablePadding ? 'none' : 'default'}
-                sortDirection={orderBy === row.id ? order : false}
+                key={col.id}
+                numeric={col.numeric}
+                padding={col.disablePadding ? 'none' : 'default'}
+                sortDirection={orderBy === col.id ? order : false}
               >
                 <Tooltip
                   title="Sort"
-                  placement={row.numeric ? 'bottom-end' : 'bottom-start'}
+                  placement={col.numeric ? 'bottom-end' : 'bottom-start'}
                   enterDelay={300}
                 >
                   <TableSortLabel
-                    active={orderBy === row.id}
+                    active={orderBy === col.id}
                     direction={order}
-                    onClick={this.createSortHandler(row.id)}
+                    onClick={this.createSortHandler(col.id)}
                   >
-                    {row.label}
+                    {col.label}
                   </TableSortLabel>
                 </Tooltip>
               </TableCell>
@@ -224,7 +224,7 @@ class FilteredTable extends React.Component {
 
   handleSelectAllClick = event => {
     if (event.target.checked) {
-      this.setState(state => ({ selected: state.data.map(n => n.id) }));
+      this.setState(state => ({ selected: this.props.data.map(n => n.name) }));
       return;
     }
     this.setState({ selected: [] });
@@ -286,15 +286,15 @@ class FilteredTable extends React.Component {
               {stableSort(data, getSorting(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map(n => {
-                  const isSelected = this.isSelected(n.id);
+                  const isSelected = this.isSelected(n.name);
                   return (
                     <TableRow
                       hover
-                      onClick={event => this.handleClick(event, n.id)}
+                      onClick={event => this.handleClick(event, n.name)}
                       role="checkbox"
                       aria-checked={isSelected}
                       tabIndex={-1}
-                      key={n.id}
+                      key={n.name}
                       selected={isSelected}
                     >
                       <TableCell padding="checkbox">
@@ -303,10 +303,10 @@ class FilteredTable extends React.Component {
                       <TableCell component="th" scope="row" padding="none">
                         {n.name}
                       </TableCell>
-                      <TableCell numeric>{n.calories}</TableCell>
-                      <TableCell numeric>{n.fat}</TableCell>
-                      <TableCell numeric>{n.carbs}</TableCell>
-                      <TableCell numeric>{n.protein}</TableCell>
+                      <TableCell>{n.created_by}</TableCell>
+                      <TableCell>{n.created}</TableCell>
+                      <TableCell>{n.groups}</TableCell>
+                      <TableCell>{n.totpenabled}</TableCell>
                     </TableRow>
                   );
                 })}
