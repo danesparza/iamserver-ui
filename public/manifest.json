@@ -1,6 +1,6 @@
 {
   "short_name": "IAM server",
-  "name": "IAM server management UI",
+  "name": "IAM server management console",
   "icons": [
     {
       "src": "security_shield",
