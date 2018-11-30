@@ -1,7 +1,6 @@
 //  React
 import React, { Component } from 'react';
 
-import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -66,10 +65,10 @@ class UserList extends Component {
         <Grid container className={classes.root} justify="space-between">    
           
           <Grid item>
-            <Button size="small" variant="contained" color="primary" className={classes.button}>
+            <Button href="#/user/" size="small" variant="contained" color="primary" className={classes.button}>
               Add user
             </Button>
-            <Button size="small" variant="contained" color="secondary" className={classNames(classes.button, classes.start )}>
+            <Button disabled size="small" variant="contained" color="secondary" className={classes.button}>
               Delete user
             </Button>
           </Grid>
