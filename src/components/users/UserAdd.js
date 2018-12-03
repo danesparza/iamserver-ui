@@ -8,6 +8,7 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
 
 //  Step components
 import BasicInfo from './BasicInfo';
@@ -111,21 +112,24 @@ class UserAdd extends Component {
             <div>
               <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
               <div>
-                <Button
-                  disabled={activeStep === 0}
-                  onClick={this.handleBack}
-                  className={classes.button}
-                >
-                  Back
-                </Button>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={this.handleNext}
-                  className={classes.button}
-                >
-                  {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-                </Button>
+
+                <Grid container className={classes.root} justify="space-between">
+                  <Grid item>
+                    <Button className={classes.button}>
+                      Cancel
+                    </Button>
+                  </Grid>
+
+                  <Grid item>
+                    <Button disabled={activeStep === 0} onClick={this.handleBack} className={classes.button}>
+                      Back
+                    </Button>
+                    <Button variant="contained" color="primary" onClick={this.handleNext} className={classes.button}>
+                      {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                    </Button>                    
+                  </Grid>
+                </Grid>
+                
               </div>
             </div>
           )}
