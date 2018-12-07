@@ -15,6 +15,9 @@ import BasicInfo from './BasicInfo';
 import AddPermissions from './AddPermissions';
 import AddReview from './AddReview';
 
+//  Utils:
+import NavUtils from '../../utils/NavUtils';
+
 const styles = theme => ({
   root: {
     width: '90%',
@@ -63,6 +66,10 @@ class UserAdd extends Component {
       skipped,
     });
   };
+
+  handleCancel = () => {
+    NavUtils.gotoUserList();
+  }
 
   handleBack = () => {
     this.setState(state => ({
@@ -115,7 +122,7 @@ class UserAdd extends Component {
 
                 <Grid container className={classes.root} justify="space-between">
                   <Grid item>
-                    <Button className={classes.button}>
+                    <Button className={classes.button} onClick={this.handleCancel}>
                       Cancel
                     </Button>
                   </Grid>

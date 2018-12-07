@@ -27,6 +27,11 @@ class NavUtils {
         window.location.hash = "#/logout";
     }
 
+    gotoUserList() {
+        //  Redirect to the user list page:
+        window.location.hash = "#/users/";
+    }
+
 }
 
 function stringToBoolean(string){

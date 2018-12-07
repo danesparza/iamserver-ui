@@ -15,9 +15,8 @@ import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Checkbox from '@material-ui/core/Checkbox';
-import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
-import DeleteIcon from '@material-ui/icons/Delete';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
 
 
@@ -145,7 +144,7 @@ const toolbarStyles = theme => ({
 });
 
 let FilteredTableToolbar = props => {
-  const { numSelected, classes, singletype } = props;
+  const { numSelected, classes, singletype, multitype } = props;
 
   let formattedPlaceholder = "Find " + singletype + " by name";
 
@@ -173,11 +172,9 @@ let FilteredTableToolbar = props => {
       <div className={classes.spacer} />
       <div className={classes.actions}>
         {numSelected > 0 ? (
-          <Tooltip title="Delete">
-            <IconButton aria-label="Delete">
-              <DeleteIcon />
-            </IconButton>
-          </Tooltip>
+          <Button size="small" variant="contained" color="secondary" className={classes.button}>
+            Delete {multitype}
+          </Button>
         ) : ""}
       </div>
     </Toolbar>
@@ -264,13 +261,13 @@ class FilteredTable extends React.Component {
   isSelected = id => this.state.selected.indexOf(id) !== -1;
 
   render() {
-    const { classes, cols, data, singletype } = this.props;
+    const { classes, cols, data, singletype, multitype } = this.props;
     const { order, orderBy, selected, rowsPerPage, page } = this.state;
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
     return (
       <Paper className={classes.root}>
-        <FilteredTableToolbar numSelected={selected.length} singletype={singletype} />
+        <FilteredTableToolbar numSelected={selected.length} singletype={singletype} multitype={multitype} />
         <div className={classes.tableWrapper}>
           
           <Table className={classes.table} aria-labelledby="tableTitle">

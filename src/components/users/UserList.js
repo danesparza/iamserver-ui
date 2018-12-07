@@ -67,10 +67,7 @@ class UserList extends Component {
           <Grid item>
             <Button href="#/user/" size="small" variant="contained" color="primary" className={classes.button}>
               Add user
-            </Button>
-            <Button disabled size="small" variant="contained" color="secondary" className={classes.button}>
-              Delete user
-            </Button>
+            </Button>            
           </Grid>
 
           <Grid item>
