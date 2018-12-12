@@ -263,7 +263,7 @@ class FilteredTable extends React.Component {
   render() {
     const { classes, cols, data, singletype, multitype } = this.props;
     const { order, orderBy, selected, rowsPerPage, page } = this.state;
-    const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
+    const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);    
 
     return (
       <Paper className={classes.root}>
@@ -285,7 +285,8 @@ class FilteredTable extends React.Component {
               {stableSort(data, getSorting(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map(n => {
-                  const isSelected = this.isSelected(n.name);
+                  const isSelected = this.isSelected(n.name);                  
+
                   return (
                     <TableRow
                       hover
@@ -299,13 +300,28 @@ class FilteredTable extends React.Component {
                       <TableCell padding="checkbox">
                         <Checkbox checked={isSelected} />
                       </TableCell>
-                      <TableCell component="th" scope="row" padding="none">
-                        {n.name}
-                      </TableCell>
-                      <TableCell>{n.created_by}</TableCell>
-                      <TableCell>{n.created}</TableCell>
-                      <TableCell>{n.groups}</TableCell>
-                      <TableCell>{n.totpenabled}</TableCell>
+
+                      {                        
+                        //  Cycle through each column and emit the data value if it matches the column name
+                        cols.map(c => {
+
+                          //  Special handling for the "name" column
+                          if(c.id === "name") {
+                            return (
+                              <TableCell component="th" scope="row" padding="none">
+                                {n.name}
+                              </TableCell>
+                            );
+                          }
+                          else 
+                          {
+                            return(
+                              <TableCell>{n[c.id]}</TableCell>
+                            );
+                          }
+                        })                    
+                      }
+                      
                     </TableRow>
                   );
                 })}
