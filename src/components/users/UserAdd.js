@@ -35,10 +35,10 @@ function getSteps() {
   return ['Basic information', 'Permissions', 'Review'];
 }
 
-function getStepContent(step) {
+function getStepContent(step, ...props) {
   switch (step) {
     case 0:
-      return <BasicInfo />;
+      return <BasicInfo {...props} />;
     case 1:
       return <AddPermissions />;
     case 2:
@@ -52,6 +52,8 @@ class UserAdd extends Component {
   state = {
     activeStep: 0,
     skipped: new Set(),
+    name: "Some name",
+    password: "defaultpassword",
   };
 
   handleNext = () => {

@@ -52,7 +52,8 @@ class BasicInfo extends Component {
                 id="name"
                 name="name"
                 label="Login name"                
-                autoComplete="fname"                
+                autoComplete="loginname"
+                value={this.props.loginname}                
               />
             </Grid>
 
@@ -64,6 +65,7 @@ class BasicInfo extends Component {
                 name="password"
                 label="Password"
                 autoComplete="pass"
+                value={this.props.password}
               />
             </Grid>            
 

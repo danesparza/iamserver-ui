@@ -11,6 +11,7 @@ import NavLocations from '../utils/NavLocations';
 import AuthStore from '../stores/AuthStore';
 import OverviewStore from '../stores/OverviewStore';
 import UserStore from '../stores/UserStore';
+import GroupStore from '../stores/GroupStore';
 
 class AuthContainer extends Component {
 
@@ -21,6 +22,7 @@ class AuthContainer extends Component {
             haveAuthToken: AuthUtils.getAuthToken(),
             InitialOverviewCheckCompleted: OverviewStore.initialCheckCompleted(),
             InitialUserListCheckCompleted: UserStore.initialCheckCompleted(),
+            InitialGroupListCheckCompleted: GroupStore.initialCheckCompleted(),
         };
     }
 
@@ -29,6 +31,7 @@ class AuthContainer extends Component {
         this.authListener = AuthStore.addListener(this._onChange);
         this.overviewListener = OverviewStore.addListener(this._onChange);
         this.userListener = UserStore.addListener(this._onChange);
+        this.groupListener = GroupStore.addListener(this._onChange);
     }
 
     componentWillUnmount() {
@@ -36,6 +39,7 @@ class AuthContainer extends Component {
         this.authListener.remove();        
         this.overviewListener.remove();
         this.userListener.remove();
+        this.groupListener.remove();
     }
 
     render() {
@@ -64,6 +68,12 @@ class AuthContainer extends Component {
                     APIUtils.getUsers();
                 }        
                 break;
+            case NavLocations.GROUP_LIST:
+                //  Get the group list:
+                if(!this.state.InitialGroupListCheckCompleted){
+                    APIUtils.getGroups();
+                }        
+                break;
             default:
                 //  no op
                 break;
@@ -86,6 +96,7 @@ class AuthContainer extends Component {
             HaveToken: AuthStore.haveAuthToken(),
             InitialOverviewCheckCompleted: OverviewStore.initialCheckCompleted(),      
             InitialUserListCheckCompleted: UserStore.initialCheckCompleted(),
+            InitialGroupListCheckCompleted: GroupStore.initialCheckCompleted(),
         });
     }
 
