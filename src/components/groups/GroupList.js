@@ -30,7 +30,7 @@ const styles = theme => ({
 //  Column definitions
 const cols = [
   { id: 'name', numeric: false, disablePadding: true, label: 'Name' },
-  { id: 'description', numeric: false, disablePadding: true, label: 'Description' },
+  { id: 'description', numeric: false, disablePadding: false, label: 'Description' },
   { id: 'created', numeric: false, disablePadding: false, label: 'Created' },
   { id: 'created_by', numeric: false, disablePadding: false, label: 'Created by' },
   { id: 'roles', numeric: false, disablePadding: false, label: 'Roles' },
