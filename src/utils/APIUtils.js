@@ -6,6 +6,9 @@ import NavUtils from '../utils/NavUtils';
 import OverviewActions from '../actions/OverviewActions';
 import UserActions from '../actions/UserActions';
 import GroupActions from '../actions/GroupActions';
+import ResourceActions from '../actions/ResourceActions';
+import PolicyActions from '../actions/PolicyActions';
+import RoleActions from '../actions/RoleActions';
 
 class APIUtils {
 
@@ -265,7 +268,111 @@ class APIUtils {
             // Receive data
             response.json().then(function (resp) {
                 //  Send to action.  
-                GroupActions.ReceiveAllGroups(resp.data);
+                ResourceActions.ReceiveAllResources(resp.data);
+            });
+        }
+        )
+        .catch(function (err) {
+            console.log('Fetch Error :-S', err);
+        });
+    }
+
+    getPolicies() {
+
+        //  Get the current auth token:
+        let token = AuthUtils.getAuthToken();
+
+        let url = `${this.baseURL}/system/policies`;
+
+        let apiHeaders = new Headers({
+            "Content-Type": "application/json; charset=UTF-8",
+            "Accept": "*/*",
+            "Authorization": "Bearer " + token,
+        });
+
+        //  Make the request:
+        fetch(url,
+        {
+            mode: 'cors',
+            method: 'get',
+            headers: apiHeaders
+        })
+        .then(
+        function (response) {
+
+            if (response.status === HttpStatus.UNAUTHORIZED || response.status === HttpStatus.FORBIDDEN) {
+                console.log('Authorization issue. Status Code: ' + response.status);
+                
+                //  Go to the logout page:
+                NavUtils.gotoLogoutPage();
+
+                return;
+            }
+
+            if (response.status !== HttpStatus.OK) {
+                console.log('Looks like there was a problem. Status Code: ' + response.status);
+                
+                //  We have an unknown problem.  Indicate there was a weird error
+
+                return;
+            }            
+
+            // Receive data
+            response.json().then(function (resp) {
+                //  Send to action.  
+                PolicyActions.ReceiveAllPolicies(resp.data);
+            });
+        }
+        )
+        .catch(function (err) {
+            console.log('Fetch Error :-S', err);
+        });
+    }
+
+    getRoles() {
+
+        //  Get the current auth token:
+        let token = AuthUtils.getAuthToken();
+
+        let url = `${this.baseURL}/system/roles`;
+
+        let apiHeaders = new Headers({
+            "Content-Type": "application/json; charset=UTF-8",
+            "Accept": "*/*",
+            "Authorization": "Bearer " + token,
+        });
+
+        //  Make the request:
+        fetch(url,
+        {
+            mode: 'cors',
+            method: 'get',
+            headers: apiHeaders
+        })
+        .then(
+        function (response) {
+
+            if (response.status === HttpStatus.UNAUTHORIZED || response.status === HttpStatus.FORBIDDEN) {
+                console.log('Authorization issue. Status Code: ' + response.status);
+                
+                //  Go to the logout page:
+                NavUtils.gotoLogoutPage();
+
+                return;
+            }
+
+            if (response.status !== HttpStatus.OK) {
+                console.log('Looks like there was a problem. Status Code: ' + response.status);
+                
+                //  We have an unknown problem.  Indicate there was a weird error
+
+                return;
+            }            
+
+            // Receive data
+            response.json().then(function (resp) {
+                //  Send to action.  
+                RoleActions.ReceiveAllRoles(resp.data);
             });
         }
         )

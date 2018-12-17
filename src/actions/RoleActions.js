@@ -4,7 +4,7 @@ import ActionTypes from './ActionTypes';
 class RoleActions {
 
 	//	Recieves the role data
-	ReceiveAllRolea(data) {
+	ReceiveAllRoles(data) {
 		AppDispatcher.dispatch({
 			actionType: ActionTypes.RECEIVE_ALL_ROLES,
 			data

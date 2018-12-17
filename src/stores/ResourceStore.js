@@ -4,36 +4,36 @@ import {
   import AppDispatcher from '../dispatcher/AppDispatcher';
   import ActionTypes from '../actions/ActionTypes';
   
-  class GroupStore extends Store {
+  class ResourceStore extends Store {
   
     constructor() {
       super(AppDispatcher);
   
-      //  All groups:
-      this.allgroups = [];
+      //  All resources:
+      this.allresources = [];
 
-      //  The current group:
-      this.currentgroup = null;
+      //  The current resource:
+      this.currentresource = null;
 
     }
 
     initialCheckCompleted() {
-      return this.allgroups.length > 0;
+      return this.allresources.length > 0;
     }
   
-    //  Gets all groups
-    getAllGroups() {
-      return this.allgroups;
+    //  Gets all resources
+    getAllResources() {
+      return this.allresources;
     }
   
     __onDispatch(action) {
   
       switch (action.actionType) {
   
-        case ActionTypes.RECEIVE_ALL_GROUPS:
+        case ActionTypes.RECEIVE_ALL_RESOURCES:
   
           //  Set the data:
-          this.allgroups = action.data;
+          this.allresources = action.data;
 
           this.__emitChange();
           break;
@@ -45,4 +45,4 @@ import {
   
   }
   
-  export default new GroupStore();
+  export default new ResourceStore();

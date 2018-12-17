@@ -4,36 +4,36 @@ import {
   import AppDispatcher from '../dispatcher/AppDispatcher';
   import ActionTypes from '../actions/ActionTypes';
   
-  class GroupStore extends Store {
+  class PolicyStore extends Store {
   
     constructor() {
       super(AppDispatcher);
   
-      //  All groups:
-      this.allgroups = [];
+      //  All policies:
+      this.allpolicies = [];
 
-      //  The current group:
-      this.currentgroup = null;
+      //  The current policy:
+      this.currentpolicy = null;
 
     }
 
     initialCheckCompleted() {
-      return this.allgroups.length > 0;
+      return this.allpolicies.length > 0;
     }
   
-    //  Gets all groups
-    getAllGroups() {
-      return this.allgroups;
+    //  Gets all policies
+    getAllPolicies() {
+      return this.allpolicies;
     }
   
     __onDispatch(action) {
   
       switch (action.actionType) {
   
-        case ActionTypes.RECEIVE_ALL_GROUPS:
+        case ActionTypes.RECEIVE_ALL_POLICIES:
   
           //  Set the data:
-          this.allgroups = action.data;
+          this.allpolicies = action.data;
 
           this.__emitChange();
           break;
@@ -45,4 +45,4 @@ import {
   
   }
   
-  export default new GroupStore();
+  export default new PolicyStore();

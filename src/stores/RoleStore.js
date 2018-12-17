@@ -4,36 +4,36 @@ import {
   import AppDispatcher from '../dispatcher/AppDispatcher';
   import ActionTypes from '../actions/ActionTypes';
   
-  class GroupStore extends Store {
+  class RoleStore extends Store {
   
     constructor() {
       super(AppDispatcher);
   
-      //  All groups:
-      this.allgroups = [];
+      //  All roles:
+      this.allroles = [];
 
-      //  The current group:
-      this.currentgroup = null;
+      //  The current role:
+      this.currentrole = null;
 
     }
 
     initialCheckCompleted() {
-      return this.allgroups.length > 0;
+      return this.allroles.length > 0;
     }
   
-    //  Gets all groups
-    getAllGroups() {
-      return this.allgroups;
+    //  Gets all roles
+    getAllRoles() {
+      return this.allroles;
     }
   
     __onDispatch(action) {
   
       switch (action.actionType) {
   
-        case ActionTypes.RECEIVE_ALL_GROUPS:
+        case ActionTypes.RECEIVE_ALL_ROLES:
   
           //  Set the data:
-          this.allgroups = action.data;
+          this.allroles = action.data;
 
           this.__emitChange();
           break;
@@ -45,4 +45,4 @@ import {
   
   }
   
-  export default new GroupStore();
+  export default new RoleStore();

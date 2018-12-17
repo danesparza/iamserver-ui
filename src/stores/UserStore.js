@@ -32,7 +32,7 @@ import {
   
         case ActionTypes.RECEIVE_ALL_USERS:
   
-          //  Set the overview data:
+          //  Set the data:
           this.allusers = action.data;
 
           this.__emitChange();
