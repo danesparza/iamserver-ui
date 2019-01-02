@@ -206,6 +206,8 @@ class FilteredTable extends React.Component {
     order: 'asc',
     orderBy: 'calories',
     selected: [],
+    filter: "",
+    filteredSet: [],
     page: 0,
     rowsPerPage: 5,
   };
