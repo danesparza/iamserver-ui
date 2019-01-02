@@ -12,6 +12,7 @@ import AuthStore from '../stores/AuthStore';
 import OverviewStore from '../stores/OverviewStore';
 import UserStore from '../stores/UserStore';
 import GroupStore from '../stores/GroupStore';
+import RoleStore from '../stores/RoleStore';
 
 class AuthContainer extends Component {
 
@@ -23,6 +24,7 @@ class AuthContainer extends Component {
             InitialOverviewCheckCompleted: OverviewStore.initialCheckCompleted(),
             InitialUserListCheckCompleted: UserStore.initialCheckCompleted(),
             InitialGroupListCheckCompleted: GroupStore.initialCheckCompleted(),
+            InitialRoleListCheckCompleted: RoleStore.initialCheckCompleted(),
         };
     }
 
@@ -32,6 +34,7 @@ class AuthContainer extends Component {
         this.overviewListener = OverviewStore.addListener(this._onChange);
         this.userListener = UserStore.addListener(this._onChange);
         this.groupListener = GroupStore.addListener(this._onChange);
+        this.roleListener = RoleStore.addListener(this._onChange);
     }
 
     componentWillUnmount() {
@@ -40,6 +43,7 @@ class AuthContainer extends Component {
         this.overviewListener.remove();
         this.userListener.remove();
         this.groupListener.remove();
+        this.roleListener.remove();
     }
 
     render() {
@@ -74,6 +78,12 @@ class AuthContainer extends Component {
                     APIUtils.getGroups();
                 }        
                 break;
+            case NavLocations.ROLE_LIST:
+                //  Get the role list:
+                if(!this.state.InitialRoleListCheckCompleted){
+                    APIUtils.getRoles();
+                }        
+                break;
             default:
                 //  no op
                 break;
@@ -97,6 +107,7 @@ class AuthContainer extends Component {
             InitialOverviewCheckCompleted: OverviewStore.initialCheckCompleted(),      
             InitialUserListCheckCompleted: UserStore.initialCheckCompleted(),
             InitialGroupListCheckCompleted: GroupStore.initialCheckCompleted(),
+            InitialRoleListCheckCompleted: RoleStore.initialCheckCompleted(),
         });
     }
 

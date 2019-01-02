@@ -33,8 +33,9 @@ const cols = [
   { id: 'description', numeric: false, disablePadding: false, label: 'Description' },
   { id: 'created', numeric: false, disablePadding: false, label: 'Created' },
   { id: 'created_by', numeric: false, disablePadding: false, label: 'Created by' },
-  { id: 'roles', numeric: false, disablePadding: false, label: 'Roles' },
+  { id: 'policies', numeric: false, disablePadding: false, label: 'Policies' },
   { id: 'users', numeric: false, disablePadding: false, label: 'Users' },
+  { id: 'groups', numeric: false, disablePadding: false, label: 'Groups' },
 ];
 
 class RoleList extends Component {  
