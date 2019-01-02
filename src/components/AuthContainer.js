@@ -13,6 +13,7 @@ import OverviewStore from '../stores/OverviewStore';
 import UserStore from '../stores/UserStore';
 import GroupStore from '../stores/GroupStore';
 import RoleStore from '../stores/RoleStore';
+import PolicyStore from '../stores/PolicyStore';
 
 class AuthContainer extends Component {
 
@@ -24,6 +25,7 @@ class AuthContainer extends Component {
             InitialOverviewCheckCompleted: OverviewStore.initialCheckCompleted(),
             InitialUserListCheckCompleted: UserStore.initialCheckCompleted(),
             InitialGroupListCheckCompleted: GroupStore.initialCheckCompleted(),
+            InitialPolicyListCheckCompleted: PolicyStore.initialCheckCompleted(),
             InitialRoleListCheckCompleted: RoleStore.initialCheckCompleted(),
         };
     }
@@ -34,6 +36,7 @@ class AuthContainer extends Component {
         this.overviewListener = OverviewStore.addListener(this._onChange);
         this.userListener = UserStore.addListener(this._onChange);
         this.groupListener = GroupStore.addListener(this._onChange);
+        this.policyListener = PolicyStore.addListener(this._onChange);
         this.roleListener = RoleStore.addListener(this._onChange);
     }
 
@@ -43,6 +46,7 @@ class AuthContainer extends Component {
         this.overviewListener.remove();
         this.userListener.remove();
         this.groupListener.remove();
+        this.policyListener.remove();
         this.roleListener.remove();
     }
 
@@ -76,6 +80,12 @@ class AuthContainer extends Component {
                 //  Get the group list:
                 if(!this.state.InitialGroupListCheckCompleted){
                     APIUtils.getGroups();
+                }        
+                break;
+            case NavLocations.POLICY_LIST:
+                //  Get the policy list:
+                if(!this.state.InitialPolicyListCheckCompleted){
+                    APIUtils.getPolicies();
                 }        
                 break;
             case NavLocations.ROLE_LIST:
