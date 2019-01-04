@@ -60,7 +60,7 @@ class Login extends Component {
 
     //  Set the initial username/password:
     this.state = {
-      Email: '',
+      Username: '',
       Password: '',
       signingIn: false,
       pageError: '' /* Eventually, this needs to come from LoginPageStore.getError() */
@@ -94,8 +94,8 @@ class Login extends Component {
           </Typography>
           <form className={classes.form}>
             <FormControl margin="normal" required fullWidth>
-              <InputLabel htmlFor="email">Email Address</InputLabel>
-              <Input id="email" name="email" autoComplete="email" autoFocus onChange={this._onEmailChange} />
+              <InputLabel htmlFor="user">User</InputLabel>
+              <Input id="user" name="user" autoComplete="user" autoFocus onChange={this._onUserChange} />
             </FormControl>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="password">Password</InputLabel>
@@ -128,9 +128,9 @@ class Login extends Component {
     );
   }
 
-  _onEmailChange = (e) => {
+  _onUserChange = (e) => {
     this.setState({
-      Email: e.target.value
+      Username: e.target.value
     });
   }
 
@@ -149,7 +149,7 @@ class Login extends Component {
     });
     
     //  Attempt Login:
-    APIUtils.login(this.state.Email, this.state.Password);
+    APIUtils.login(this.state.Username, this.state.Password);
   }
 
   //  Data changed:
