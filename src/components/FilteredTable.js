@@ -210,6 +210,7 @@ class FilteredTable extends React.Component {
     filteredSet: [],
     page: 0,
     rowsPerPage: 5,
+    /* Try this for filtered data: https://stackoverflow.com/questions/45542488/material-ui-beta-table-with-global-search  */
   };
 
   handleRequestSort = (event, property) => {
