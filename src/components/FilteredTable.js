@@ -162,6 +162,7 @@ let FilteredTableToolbar = props => {
         ) : (
           <Input
             placeholder={formattedPlaceholder}
+            onChange={props.onSearch}
             className={classes.input}
             inputProps={{
               'aria-label': 'Description',
@@ -209,8 +210,7 @@ class FilteredTable extends React.Component {
     filter: "",
     filteredSet: [],
     page: 0,
-    rowsPerPage: 5,
-    /* Try this for filtered data: https://stackoverflow.com/questions/45542488/material-ui-beta-table-with-global-search  */
+    rowsPerPage: 5,    
   };
 
   handleRequestSort = (event, property) => {
@@ -253,6 +253,56 @@ class FilteredTable extends React.Component {
     this.setState({ selected: newSelected });
   };
 
+  /* Try this for filtered data: https://stackoverflow.com/questions/45542488/material-ui-beta-table-with-global-search  */
+  handleSearch = event => {
+    const {data} = this.props;
+    let filteredData = [];
+    const regex = new RegExp(event.target.value, 'gi');
+
+    //  Filter the dataset
+    filteredData = data.filter(e => {
+        let itemProps = Object.values(e);
+        let found = false;
+
+        //  For each property on the item... 
+        itemProps.forEach(e => {            
+            
+            //  If the property is a string...
+            if (typeof e == 'string')
+            {
+              //  ...  see if we can find a match                            
+              let match = e.match(regex);
+
+              //  If we have a match, indicate it
+              if(match != null) {
+                found = true;
+              }
+            }                
+        })
+        
+        //  If we found it in one of the properties, return the item 
+        //  the property was a part of.  Otherwise, return null
+        if (found) {
+          return e;
+        } else {
+          return null;
+        }
+    })
+
+    /*
+    //  Log what we found (diagnostics)
+    let logdata = {};
+    logdata.data = data;
+    logdata.filterdata = filteredData;
+    logdata.filter = event.target.value;
+
+    console.log(logdata);
+    */
+
+    //  Update our state to include the filtered set and our search text
+    this.setState({filteredSet: filteredData, filter: event.target.value})
+  }
+
   handleChangePage = (event, page) => {
     this.setState({ page });
   };
@@ -270,7 +320,7 @@ class FilteredTable extends React.Component {
 
     return (
       <Paper className={classes.root}>
-        <FilteredTableToolbar numSelected={selected.length} singletype={singletype} multitype={multitype} />
+        <FilteredTableToolbar onSearch={this.handleSearch} numSelected={selected.length} singletype={singletype} multitype={multitype} />
         <div className={classes.tableWrapper}>
           
           <Table className={classes.table} aria-labelledby="tableTitle">
