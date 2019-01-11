@@ -314,9 +314,18 @@ class FilteredTable extends React.Component {
   isSelected = id => this.state.selected.indexOf(id) !== -1;
 
   render() {
-    const { classes, cols, data, singletype, multitype } = this.props;
-    const { order, orderBy, selected, rowsPerPage, page } = this.state;
-    const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);    
+    const { classes, cols, singletype, multitype } = this.props;
+    const { order, orderBy, selected, rowsPerPage, page, filter, filteredSet } = this.state;        
+    let { data } = this.props;
+
+    //  If we are filtering, use the filtered data set:
+    if (filter !== "")
+    {
+      data = filteredSet;
+    }
+
+    //  Adjust empty rows
+    const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
     return (
       <Paper className={classes.root}>
