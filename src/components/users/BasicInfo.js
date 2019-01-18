@@ -45,31 +45,22 @@ class BasicInfo extends Component {
             Set user details
           </Typography>
 
-          <Grid container spacing={24}>
-            <Grid item xs={12}>
-              <TextField
-                required
-                id="name"
-                name="name"
-                label="Login name"                
-                autoComplete="loginname"
-                value={this.props.loginname}                
-              />
+          <div style={{paddingLeft: 100, paddingTop: 40, paddingBottom: 60}}>
+            <Grid container spacing={24}>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  id="name"
+                  name="name"
+                  label="Login name"                
+                  autoComplete="loginname"
+                  helperText="The login name for the user / application"
+                  value={this.props.loginname}                
+                />
+              </Grid>            
+
             </Grid>
-
-            <Grid item xs={12}>
-              <TextField
-                required
-                type="password"
-                id="password"
-                name="password"
-                label="Password"
-                autoComplete="pass"
-                value={this.props.password}
-              />
-            </Grid>            
-
-          </Grid>                            
+          </div>                                      
 
       </React.Fragment>
       );

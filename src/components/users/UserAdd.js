@@ -20,7 +20,7 @@ import NavUtils from '../../utils/NavUtils';
 
 const styles = theme => ({
   root: {
-    width: '90%',
+    flexgrow: 1,
   },
   button: {
     marginRight: theme.spacing.unit,
